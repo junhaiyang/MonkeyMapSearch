@@ -1,5 +1,9 @@
 # MonkeyMapSearch
 
+* 串行化地图API，插件由来是因为百度地图在定位完成前不能执行其它请求，索性就做了这个队列化处理
+
+#####引用
+
 	
     pod 'MonkeyMapConfig', '1.0.BMap'  #1.0.AMap：高德地图   1.0.BMap 百度地图
     pod 'MonkeyMapSearch', '~> 1.0'
