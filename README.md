@@ -4,6 +4,7 @@
 
 #####引用
 
+	source 'https://github.com/junhaiyang/Specs.git'
 	
     pod 'MonkeyMapConfig', '1.0.BMap'  #1.0.AMap：高德地图   1.0.BMap 百度地图
     pod 'MonkeyMapSearch', '~> 1.0'
