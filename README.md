@@ -4,6 +4,7 @@
 
 #####引用
 
+	source 'https://github.com/CocoaPods/Specs.git'
 	source 'https://github.com/junhaiyang/Specs.git'
 	
     pod 'MonkeyMapConfig', '1.0.BMap'  #1.0.AMap：高德地图   1.0.BMap 百度地图
@@ -19,6 +20,8 @@
 	//配置地图 apiKey
 	[[MMKLocationLoader  shareInstance] configureMap:mapKey]
  	
+ 	//方法调用
+ 	[MMKLocationLoader  shareInstance]  startLoad....   
 
 	//获取经纬度
 	-(MMKCustomLocationOperation *)startLoadCoordinate:(MMKLocationLoaderCoordinateBlock)finishedBlock;
