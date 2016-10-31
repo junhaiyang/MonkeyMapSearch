@@ -205,7 +205,7 @@
         __weak MMKUserLocationOperation *blockOperation =operation;
         
         [operation  setCompletionBlock:^{
-            dispatch_sync(dispatch_get_main_queue(), ^{
+            dispatch_mmk_main_sync_undeadlock_fun(^{
                 
                 if(blockFinishedBlock){
                     if([MMKLocationLoader CLLocationCoordinate2DIsValid:blockOperation.mycoordinate] ){
@@ -250,7 +250,7 @@
         __weak MMKGeoCodeOperation *blockOperation =operation;
         
         [operation  setCompletionBlock:^{
-            dispatch_sync(dispatch_get_main_queue(), ^{
+            dispatch_mmk_main_sync_undeadlock_fun(^{
                 
                 if(blockFinishedBlock){
                     if([MMKLocationLoader CLLocationCoordinate2DIsValid:blockOperation.coordinate]){
@@ -287,7 +287,7 @@
         
         [operation  setCompletionBlock:^{
             
-            dispatch_sync(dispatch_get_main_queue(), ^{
+            dispatch_mmk_main_sync_undeadlock_fun(^{
                 
                 if(blockFinishedBlock){
                     if([MMKLocationLoader CLLocationCoordinate2DIsValid:blockOperation.coordinate]&&blockOperation.result){
@@ -329,7 +329,7 @@
         
         [operation  setCompletionBlock:^{
             
-            dispatch_sync(dispatch_get_main_queue(), ^{
+            dispatch_mmk_main_sync_undeadlock_fun(^{
                 if(blockFinishedBlock){
                     if(blockOperation.result)
                         blockFinishedBlock(true,blockOperation.result,blockOperation.errorCode);
@@ -368,7 +368,7 @@
         
         [operation  setCompletionBlock:^{
             
-            dispatch_sync(dispatch_get_main_queue(), ^{
+            dispatch_mmk_main_sync_undeadlock_fun(^{
                 if(blockFinishedBlock){
                     if(blockOperation.poiResult)
                         blockFinishedBlock(true,blockOperation.poiResult,blockOperation.errorCode);
@@ -409,7 +409,7 @@
         
         [operation  setCompletionBlock:^{
             
-            dispatch_sync(dispatch_get_main_queue(), ^{
+            dispatch_mmk_main_sync_undeadlock_fun(^{
                 if(blockFinishedBlock){
                     if(blockOperation.poiDetailResult)
                         blockFinishedBlock(true,blockOperation.poiDetailResult,blockOperation.errorCode);

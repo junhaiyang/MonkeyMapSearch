@@ -5,7 +5,7 @@
 #ifndef __MAP_USE_AMAP_NOT_BMP__
 @interface MMKPoiDetailResultOperation()<BMKPoiSearchDelegate>{
     
-    BMKPoiSearch *_searcher;
+  __block  BMKPoiSearch *_searcher;
 }
 
 @end
@@ -17,6 +17,7 @@
 #ifndef __MAP_USE_AMAP_NOT_BMP__
 
 -(void)main{
+    dispatch_mmk_main_sync_undeadlock_fun(^{
     
     _searcher =[[BMKPoiSearch alloc]init];
     _searcher.delegate = self;
@@ -24,6 +25,7 @@
     if(![_searcher poiDetailSearch: self.searchDetailOption]){
         [self finishMethod];
     }
+    });
      
     
     

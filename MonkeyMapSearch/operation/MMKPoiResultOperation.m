@@ -5,7 +5,7 @@
 #ifdef __MAP_USE_AMAP_NOT_BMP__
 @interface MMKPoiResultOperation()<AMapSearchDelegate>{
     
-    AMapSearchAPI *_searcher;
+   __block AMapSearchAPI *_searcher;
 }
 
 @end
@@ -13,7 +13,7 @@
 #else
 @interface MMKPoiResultOperation()<BMKPoiSearchDelegate>{
     
-    BMKPoiSearch *_searcher;
+   __block BMKPoiSearch *_searcher;
 }
 
 @end
@@ -23,6 +23,8 @@
 @implementation MMKPoiResultOperation
 
 -(void)main{
+    
+    dispatch_mmk_main_sync_undeadlock_fun(^{
     
     
 #ifdef __MAP_USE_AMAP_NOT_BMP__
@@ -99,6 +101,7 @@
      if(!result)
         [self finishMethod];
 #endif
+    });
     
 }
 -(void)timeoutMethod{

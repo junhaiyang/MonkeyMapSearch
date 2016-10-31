@@ -6,7 +6,7 @@
 #ifdef __MAP_USE_AMAP_NOT_BMP__
 @interface MMKReverseGeoCodeOperation()<AMapSearchDelegate>{
     
-    AMapSearchAPI *search;
+  __block  AMapSearchAPI *search;
 }
 
 @end
@@ -14,7 +14,7 @@
 #else
 @interface MMKReverseGeoCodeOperation()<BMKGeoCodeSearchDelegate>{
     
-    BMKGeoCodeSearch *search;
+   __block BMKGeoCodeSearch *search;
 }
 
 @end
@@ -24,6 +24,8 @@
 @implementation MMKReverseGeoCodeOperation
 
 -(void)main{
+    
+    dispatch_mmk_main_sync_undeadlock_fun(^{
     
 #ifdef __MAP_USE_AMAP_NOT_BMP__
     
@@ -52,6 +54,7 @@
     }
     
 #endif
+    });
      
 }
 -(void)timeoutMethod{

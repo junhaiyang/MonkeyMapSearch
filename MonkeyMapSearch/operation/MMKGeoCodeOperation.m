@@ -5,7 +5,7 @@
 #ifdef __MAP_USE_AMAP_NOT_BMP__
 @interface MMKGeoCodeOperation()<AMapSearchDelegate>{
     
-    AMapSearchAPI *search;
+   __block AMapSearchAPI *search;
 }
 
 @end
@@ -13,7 +13,7 @@
 #else
 @interface MMKGeoCodeOperation()<BMKGeoCodeSearchDelegate>{
     
-    BMKGeoCodeSearch *search;
+  __block  BMKGeoCodeSearch *search;
 }
 
 @end
@@ -35,6 +35,7 @@
 -(void)main{
     
     
+    dispatch_mmk_main_sync_undeadlock_fun(^{
     
     
 #ifdef __MAP_USE_AMAP_NOT_BMP__
@@ -65,6 +66,7 @@
     }
     
 #endif 
+    });
     
 }
 -(void)timeoutMethod{

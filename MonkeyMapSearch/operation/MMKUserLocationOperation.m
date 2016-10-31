@@ -7,7 +7,7 @@
 #ifdef __MAP_USE_AMAP_NOT_BMP__
 @interface MMKUserLocationOperation()<AMapLocationManagerDelegate>{
     
-    AMapLocationManager *myLocService;
+   __block AMapLocationManager *myLocService;
     
 }
 
@@ -15,7 +15,7 @@
 #else
 @interface MMKUserLocationOperation()<BMKLocationServiceDelegate>{
     
-    BMKLocationService *myLocService;
+  __block  BMKLocationService *myLocService;
     
 }
     
@@ -35,6 +35,7 @@
 
 -(void)main{
     
+    dispatch_mmk_main_sync_undeadlock_fun(^{
     
 #ifdef __MAP_USE_AMAP_NOT_BMP__
     
@@ -49,7 +50,7 @@
     [myLocService startUserLocationService];
     
 #endif
-    
+    });
 
 }
 -(void)timeoutMethod{
