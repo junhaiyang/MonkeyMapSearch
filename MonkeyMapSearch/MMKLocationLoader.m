@@ -140,17 +140,32 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-
-+(void)checkAuthorization{
-    
-    if(![CLLocationManager locationServicesEnabled]){
++(void)requestWhenInUseAuthorization{ 
         
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
         if ([UIDevice currentDevice].systemVersion.floatValue>=8.0) {
             CLLocationManager *locationManager = [[CLLocationManager alloc] init]; 
             [locationManager requestWhenInUseAuthorization];
         }
-#endif
+#endif 
+}
+
++(void)requestAlwaysAuthorization{ 
+        
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+        if ([UIDevice currentDevice].systemVersion.floatValue>=8.0) {
+            CLLocationManager *locationManager = [[CLLocationManager alloc] init]; 
+            [locationManager requestAlwaysAuthorization]; 
+            [locationManager requestWhenInUseAuthorization];
+        }
+#endif 
+}
++(void)checkAuthorization{
+    
+    if(![CLLocationManager locationServicesEnabled]){
+
+        [MMKLocationLoader requestWhenInUseAuthorization];
+         
     }
 }
 -(BOOL)isAuthorization{
