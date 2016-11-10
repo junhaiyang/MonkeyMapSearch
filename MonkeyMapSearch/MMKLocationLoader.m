@@ -30,6 +30,7 @@
     dispatch_queue_t operation_queue;
     NSObject *lock;
     BMKMapManager *_mapManager;
+    CLLocationManager *locationManager;
     
 }
 
@@ -139,22 +140,22 @@
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
-+(void)requestWhenInUseAuthorization{ 
+ 
+-(void)requestWhenInUseAuthorization{
         
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
         if ([UIDevice currentDevice].systemVersion.floatValue>=8.0) {
-            CLLocationManager *locationManager = [[CLLocationManager alloc] init]; 
+            locationManager = [[CLLocationManager alloc] init];
             [locationManager requestWhenInUseAuthorization];
         }
 #endif 
 }
 
-+(void)requestAlwaysAuthorization{ 
+-(void)requestAlwaysAuthorization{
         
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
         if ([UIDevice currentDevice].systemVersion.floatValue>=8.0) {
-            CLLocationManager *locationManager = [[CLLocationManager alloc] init]; 
+            locationManager = [[CLLocationManager alloc] init];
             [locationManager requestAlwaysAuthorization]; 
             [locationManager requestWhenInUseAuthorization];
         }
@@ -164,7 +165,7 @@
     
     if(![CLLocationManager locationServicesEnabled]){
 
-        [MMKLocationLoader requestWhenInUseAuthorization];
+        [[MMKLocationLoader shareInstance] requestWhenInUseAuthorization];
          
     }
 }

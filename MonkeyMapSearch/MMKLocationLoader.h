@@ -28,9 +28,9 @@ typedef void(^MMKLocationLoaderPoiDetailResultBlock)(BOOL successful, BMKPoiDeta
 
 +(MMKLocationLoader *)shareInstance;
 
-+(void)requestWhenInUseAuthorization;
+-(void)requestWhenInUseAuthorization;
 
-+(void)requestAlwaysAuthorization;
+-(void)requestAlwaysAuthorization;
 
 +(void)checkAuthorization;
 
