@@ -147,8 +147,7 @@
         
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
         if ([UIDevice currentDevice].systemVersion.floatValue>=8.0) {
-            CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-            [locationManager requestAlwaysAuthorization];
+            CLLocationManager *locationManager = [[CLLocationManager alloc] init]; 
             [locationManager requestWhenInUseAuthorization];
         }
 #endif
